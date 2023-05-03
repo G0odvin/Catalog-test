@@ -45,8 +45,20 @@ export const Carousel: React.FC<Props> = ({ slides }) => {
     setCurrentIndex(slideIndex)
   };
 
+  // animation styles
+  const parentWidth = 1040;
+
+  const slidesStyles = (slideIndex: number) => ({
+    backgroundImage: `url(${slides[slideIndex]})`,
+  });
+
+  const carouselImageContainerStyles = () => ({
+    width: parentWidth * slides.length,
+    transform: `translateX(${-(currentIndex * parentWidth)}px)`,
+});
+
   useEffect(() => {
-    startSliderTimer()
+    startSliderTimer();
 
     return () => stopSlideTimer();
   }, []);
@@ -59,22 +71,28 @@ export const Carousel: React.FC<Props> = ({ slides }) => {
           <img src={arrowLeft} alt="carousel batton img" className='carousel__btn__image' />
         </button>
 
-         <div
-          className='carousel__imageContainer'
-        >
-          <div style={{ backgroundImage: `url(${slides[currentIndex]})` }} className='carousel__img'></div>
-
+        <div className='carousel__containerOverflow'>
+          <div
+            className='carousel__imageContainer'
+            style={carouselImageContainerStyles()}
+          >
+            {slides.map((_, slideIndex) => (
+              <div key={slideIndex} style={slidesStyles(slideIndex)} className='carousel__img'></div>
+            ))}
+          </div>
         </div>
+
+
         <button type='button' className='carousel__btn' onClick={nextBtn}>
           <img src={arrowRight} alt="carousel batton img" className='carousel__btn__image' />
         </button>
       </div>
 
       <div className='carousel__dotsContainer'>
-        {slides.map((_, slideIndex) =>(
-          <div 
-            className={currentIndex === slideIndex ? 'carousel__dotsActive' : 'carousel__dots'} 
-            key={slideIndex} onClick={() => goToSlide(slideIndex)} 
+        {slides.map((_, slideIndex) => (
+          <div
+            className={currentIndex === slideIndex ? 'carousel__dotsActive' : 'carousel__dots'}
+            key={slideIndex} onClick={() => goToSlide(slideIndex)}
           />
         ))}
       </div>

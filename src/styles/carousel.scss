@@ -10,9 +10,17 @@
     margin-bottom: 18px;
   }
 
-  &__item {
+
+  &__containerOverflow {
+    overflow: hidden;
     width: 1040px;
     height: 400px;
+  }
+
+  &__imageContainer {
+    display: flex;
+    height: 100%;
+    transition: transform ease-out 0.5s;
   }
 
   &__img {
@@ -22,10 +30,6 @@
     background-size: cover;
   }
 
-  &__imageContainer {
-    width: 1040px;
-    height: 400px;
-  }
 
   &__btn {
     width: 32px;
