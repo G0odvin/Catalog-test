@@ -2,9 +2,6 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import '../../styles/carousel.scss';
 import arrowLeft from '../../images/icons/arrow_left.svg';
 import arrowRight from '../../images/icons/arrow_right.svg';
-import rectangleBtn from '../../images/icons/Rectangle 23.svg';
-import { CarouselItem } from './CarouselItem';
-import { CarouselIndicators } from './CarouselIndicators';
 
 type Props = {
   slides: string[]
@@ -29,7 +26,7 @@ export const Carousel: React.FC<Props> = ({ slides }) => {
     }, 3000);
 
     slideInterval.current = interval
-  }
+  };
 
   const prevBtn = () => {
     startSliderTimer();
@@ -41,13 +38,18 @@ export const Carousel: React.FC<Props> = ({ slides }) => {
     startSliderTimer();
     const index = currentIndex < slides.length - 1 ? currentIndex + 1 : 0;
     setCurrentIndex(index);
-  }
+  };
+
+  const goToSlide = (slideIndex: number) => {
+    startSliderTimer();
+    setCurrentIndex(slideIndex)
+  };
 
   useEffect(() => {
     startSliderTimer()
 
     return () => stopSlideTimer();
-  }, [])
+  }, []);
 
   return (
     <div className='carousel'>
@@ -57,25 +59,25 @@ export const Carousel: React.FC<Props> = ({ slides }) => {
           <img src={arrowLeft} alt="carousel batton img" className='carousel__btn__image' />
         </button>
 
-        {/* <div className='carousel__image' style={{ backgroundImage: `url(${slides[currentIndex]})` }} /> */}
-        <div
-          className='carousel__imageContainer' style={{ transform: `translateX(${-currentIndex * 100}%)` }}
+         <div
+          className='carousel__imageContainer'
         >
-          {slides.map((slide, index) => (
-            <CarouselItem
-              slide={slide}
-              key={index}
-              stopSlide={stopSlideTimer}
-              startSlide={startSliderTimer}
-            />
-          ))}
+          <div style={{ backgroundImage: `url(${slides[currentIndex]})` }} className='carousel__img'></div>
+
         </div>
         <button type='button' className='carousel__btn' onClick={nextBtn}>
-          <img src={arrowRight} alt="" className='carousel__btn__image' />
+          <img src={arrowRight} alt="carousel batton img" className='carousel__btn__image' />
         </button>
       </div>
 
-      <CarouselIndicators slides={slides} currentIndex={currentIndex} />
+      <div className='carousel__dotsContainer'>
+        {slides.map((_, slideIndex) =>(
+          <div 
+            className={currentIndex === slideIndex ? 'carousel__dotsActive' : 'carousel__dots'} 
+            key={slideIndex} onClick={() => goToSlide(slideIndex)} 
+          />
+        ))}
+      </div>
     </div>
 
   )
