@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import '../../styles/carousel.scss';
 import arrowLeft from '../../images/icons/arrow_left.svg';
 import arrowRight from '../../images/icons/arrow_right.svg';
+import { useWindowSize } from '../../hooks/useWindowSize';
 
 type Props = {
   slides: string[]
@@ -11,6 +12,26 @@ export const Carousel: React.FC<Props> = ({ slides }) => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const slideInterval = useRef<null | NodeJS.Timeout>();
+  // const [sliderWidth, setSliderWidth] = useState(1040);
+
+  // const windowElRef = useRef<HTMLElement | null>();
+
+  // useEffect(() => {
+  //   const resizeHandler = () => {
+  //     const _sliderWidth = windowElRef.current.offsetWidth;
+  //     setSliderWidth(_sliderWidth)
+  //   }
+
+  //   resizeHandler();
+  //   window.addEventListener('resize', resizeHandler);
+
+  //   return () => {
+  //     window.removeEventListener('resize', resizeHandler);
+  //   }
+
+  // }, [])
+
+  const sliderWidth = useWindowSize();
 
   const stopSlideTimer = () => {
     if (slideInterval.current) {
@@ -23,7 +44,7 @@ export const Carousel: React.FC<Props> = ({ slides }) => {
 
     const interval = setInterval(() => {
       setCurrentIndex(currentIndex => currentIndex < slides.length - 1 ? currentIndex + 1 : 0);
-    }, 3000);
+    }, 5000);
 
     slideInterval.current = interval
   };
@@ -46,15 +67,15 @@ export const Carousel: React.FC<Props> = ({ slides }) => {
   };
 
   // animation styles
-  const parentWidth = 1040;
+  // const parentWidth = 1040;
 
   const slidesStyles = (slideIndex: number) => ({
     backgroundImage: `url(${slides[slideIndex]})`,
   });
 
   const carouselImageContainerStyles = () => ({
-    width: parentWidth * slides.length,
-    transform: `translateX(${-(currentIndex * parentWidth)}px)`,
+    width: sliderWidth.width * slides.length,
+    transform: `translateX(${-(currentIndex * sliderWidth.width)}px)`,
 });
 
   useEffect(() => {
