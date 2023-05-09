@@ -1,21 +1,26 @@
 import React from 'react';
 import '../../styles/productCard.scss';
 import ProductCardPhoto from '../../images/card/product_img.png';
-import FavoritesIcon from '../../images/card/Vector (Stroke).png';
+import { Phones } from '../../types/Phones';
 
-export const ProductCard = () => {
+type PhoneData = {
+  productData: Phones,
+  priceToken: number,
+}
+
+export const ProductCard:React.FC<PhoneData> = ({ productData, priceToken }) => {
+
   return (
     <div className='card'>
       <div className='card__imageContainer'>
-        <img src={ProductCardPhoto} alt="card image" className='card__image' />
+        <img src={productData?.image} alt="card image" className='card__image' />
       </div>
-
-
-      <h2 className='card__item'>Apple iPhone 11 Pro Max 512GB Midnight Green (iMT9G2FS/A)</h2>
+      <h2 className='card__item'>{productData?.name}</h2>
 
       <div className='card__price'>
-        <div className='card__price__text'>$1299</div>
-        <div className='card__price__sale' hidden>$899</div>
+        <div className='card__price__text'>${productData?.fullPrice}</div>
+        {priceToken && <div className='card__price__sale'>{`$${priceToken}`}</div>}
+        
       </div>
 
       <div className='card__description'>
@@ -26,9 +31,9 @@ export const ProductCard = () => {
         </div>
 
         <div className='card__description__values'>
-          <div className='card__description__value'>6.5” OLED</div>
-          <div className='card__description__value'>512 GB</div>
-          <div className='card__description__value'>4 GB</div>
+          <div className='card__description__value'>{productData?.screen}</div>
+          <div className='card__description__value'>{productData?.ram}</div>
+          <div className='card__description__value'>{productData?.capacity}</div>
         </div>
       </div>
 

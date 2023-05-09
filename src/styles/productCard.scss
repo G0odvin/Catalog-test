@@ -38,6 +38,9 @@
   &__price {
     position: relative;
     margin-bottom: 23px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
 
     &__text {
       font-weight: 700;
@@ -54,6 +57,15 @@
       content: "";
       height: 1px;
       background-color: #E2E6E9;
+    }
+
+    &__sale {
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 28px;
+      text-decoration-line: line-through;
+      color: #89939A;
+
     }
   }
 
@@ -144,6 +156,7 @@
 
     &:active {
       background-color: #EB5757;
+
       path {
         fill: #EB5757;
       }

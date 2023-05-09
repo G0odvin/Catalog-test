@@ -2,8 +2,14 @@ import React from 'react';
 import '../../styles/hotPrices.scss';
 import ArrowRight from '../../images/icons/arrow_right_small.svg';
 import { ProductCard } from '../ProductCard/ProductCard';
+import { Phones } from '../../types/Phones';
 
-export const HotPrices = () => {
+type HotPrice = {
+  hotPriceProducts: Phones[],
+}
+
+
+export const HotPrices: React.FC<HotPrice> = ({ hotPriceProducts }) => {
   return (
     <div className='hotPrices'>
       <div className='hotPrices__titleContainer'>
@@ -21,10 +27,14 @@ export const HotPrices = () => {
       </div>
 
       <div className='hotPrices__cardContainer'>
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
+        {hotPriceProducts.map(product => (
+          <ProductCard
+            key={product.id}
+            productData = {product}
+            priceToken = {product.price}
+          />
+        ))}
+
       </div>
     </div>
   )
