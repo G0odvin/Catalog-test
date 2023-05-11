@@ -1,4 +1,4 @@
-# template-react-app
+# Demo page https://g0odvin.github.io/Catalog-test/
 
 
 ## How to use
