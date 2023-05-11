@@ -14,6 +14,7 @@ import sliderImg3 from './images/banner/banner.png';
 import sliderImg4 from './images/banner/Apple-iPhone-12-Download-PNG-Image.png'
 import { Phones } from './types/Phones';
 import { getPhones } from './api/data';
+import { ProductsSlider } from './components/ProductsSlider/ProductsSlider';
 
 const App = () => {
   const slides = [
@@ -63,7 +64,11 @@ const App = () => {
       <Header />
       <div className='container'>
         <Carousel slides={slides} />
-        {hotPriceProducts && <HotPrices hotPriceProducts={hotPriceProducts} />}
+        {/* {hotPriceProducts && <HotPrices hotPriceProducts={hotPriceProducts} />} */}
+        <ProductsSlider
+        title = {'Hot prices'}
+        productsData = {hotPriceProducts}
+        />
 
         <Categorys />
         <NewModels />

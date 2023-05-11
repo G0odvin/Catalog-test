@@ -20,10 +20,10 @@ export const NewModels = () => {
       </div>
 
       <div className='newModels__cardContainer'>
+      {/* <ProductCard />
       <ProductCard />
       <ProductCard />
-      <ProductCard />
-      <ProductCard />
+      <ProductCard /> */}
       </div>
     </div>
   )

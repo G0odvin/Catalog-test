@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../styles/productCard.scss';
-import ProductCardPhoto from '../../images/card/product_img.png';
 import { Phones } from '../../types/Phones';
 
 type PhoneData = {
