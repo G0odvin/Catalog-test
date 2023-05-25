@@ -25,6 +25,7 @@ const App = () => {
   ];
   const [phonesData, setPhonesData] = useState<Phones[]>([]);
   const [hotPriceProducts, setHotPriceProducts] = useState<Phones[]>([]);
+  const [newModels, setNewModels] = useState<Phones[]>([]);
   const [isPhonesDataLoading, setIsPhonesDataLoading] = useState(false);
 
   const loadPhonesData = async () => {
@@ -43,6 +44,7 @@ const App = () => {
   useEffect(() => {
     loadPhonesData();
     getHotPriceProducts();
+    getBrandNewProducts();
   }, []);
 
   const getHotPriceProducts = async () => {
@@ -59,6 +61,21 @@ const App = () => {
     }
   };
 
+  const getBrandNewProducts = async () => {
+    try {
+      setIsPhonesDataLoading(true);
+      const dataProducts = await getPhones();
+      const dataNewModels = dataProducts.filter(product => product.year === 2019);
+      const dataNewModelsSorted = [...dataNewModels].sort((a, b) => b.price - a.price);
+      setNewModels(dataNewModelsSorted);
+    } catch (error) {
+      'Error'
+      setIsPhonesDataLoading(false);
+    } finally {
+      setIsPhonesDataLoading(false);
+    }
+  }
+
   return (
     <div className="App">
       <Header />
@@ -71,7 +88,10 @@ const App = () => {
         />
 
         <Categorys />
-        <NewModels />
+
+        <ProductsSlider
+        title = {'Brand new models'}
+        productsData = {newModels} />
       </div>
 
       <Footer />
