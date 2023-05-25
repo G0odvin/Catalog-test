@@ -1,7 +1,7 @@
 .sliderBtn {
   width: 32px;
   height: 32px;
-  border: 1px solid #E2E6E9;
+  border: 1px solid #B4BDC4;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,6 +15,18 @@
 
     &--left {
       transform: matrix(-1, 0, 0, 1, 0, 0);
+    }
+
+    &--right {
+      transform: matrix(-1, 0, 0, 1, 0, 0);
+    }
+  }
+
+  &__disabled {
+    border: 1px solid #E2E6E9;
+
+    &:hover {
+      border: 1px solid #E2E6E9;
     }
   }
 }
