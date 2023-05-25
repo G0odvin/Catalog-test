@@ -23,16 +23,16 @@ const App = () => {
     sliderImg3,
     sliderImg4
   ];
-  const [phonesData, setPhonesData] = useState<Phones[]>([]);
+  const [productsData, setProductsData] = useState<Phones[]>([]);
   const [hotPriceProducts, setHotPriceProducts] = useState<Phones[]>([]);
   const [newModels, setNewModels] = useState<Phones[]>([]);
   const [isPhonesDataLoading, setIsPhonesDataLoading] = useState(false);
 
-  const loadPhonesData = async () => {
+  const loadProductsData = async () => {
     try {
       setIsPhonesDataLoading(true);
       const getPhonesData = await getPhones();
-      setPhonesData(getPhonesData);
+      setProductsData(getPhonesData);
     } catch (error) {
       'Error'
       setIsPhonesDataLoading(false);
@@ -42,10 +42,11 @@ const App = () => {
   };
 
   useEffect(() => {
-    loadPhonesData();
+    loadProductsData();
     getHotPriceProducts();
     getBrandNewProducts();
   }, []);
+
 
   const getHotPriceProducts = async () => {
     try {
@@ -83,15 +84,17 @@ const App = () => {
         <Carousel slides={slides} />
         {/* {hotPriceProducts && <HotPrices hotPriceProducts={hotPriceProducts} />} */}
         <ProductsSlider
-        title = {'Hot prices'}
-        productsData = {hotPriceProducts}
+          title={'Hot prices'}
+          productsData={hotPriceProducts}
         />
 
-        <Categorys />
+        <Categorys
+          productsData={productsData}
+        />
 
         <ProductsSlider
-        title = {'Brand new models'}
-        productsData = {newModels} />
+          title={'Brand new models'}
+          productsData={newModels} />
       </div>
 
       <Footer />
