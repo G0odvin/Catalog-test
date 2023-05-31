@@ -3,11 +3,26 @@ import '../styles/phonesPage.scss';
 import { getData } from '../api/data';
 import { Phones } from '../types/Phones';
 import { DataFilters } from '../components/DataFilters/DataFilters';
+import { ItemsOnPage } from '../components/ItemsOnPage/ItemsOnPage';
+import { Pagination } from '../components/Pagination/Pagination';
 
 export const PhonesPage = () => {
   const [isPhonesDataLoading, setIsPhonesDataLoading] = useState(false);
   const [dataPhones, setDataPhones] = useState<Phones[]>([]);
   const [filtredPhones, setFiltredPhones] = useState<Phones[]>([]);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(dataPhones.length);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  const handleChangeItemsPerPage = (value: number) => {
+    setItemsPerPage(value);
+    setCurrentPage(1);
+  };
+
+  const onPageChange = (page: number) => {
+    if (page !== currentPage) {
+      setCurrentPage(page);
+    }
+  };
 
   const getPhones = async () => {
     try {
@@ -34,10 +49,25 @@ export const PhonesPage = () => {
     <>
       <h1 className='phonesPage__title'>Mobile phones</h1>
       <p className='phonesPage__description'>{`${countMobilePhones} models`}</p>
+      <div className='phonesPage__sortContainer'>
       <DataFilters
         dataPhones={dataPhones}
         setFiltredPhones = {setFiltredPhones}
       />
+      <ItemsOnPage 
+      setItemsPerPage={handleChangeItemsPerPage}
+      />
+      </div>
+
+      <Pagination 
+      itemsPerPage={itemsPerPage}
+      currentPage={currentPage}
+      dataPhones={dataPhones}
+      total={countMobilePhones}
+      onPageChange={onPageChange}
+      setCurrentPage={setCurrentPage}
+      />
+
     </>
   )
 }

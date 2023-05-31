@@ -45,14 +45,27 @@ export const DataFilters: React.FC<Props> = ({ dataPhones, setFiltredPhones }) =
           return dataPhones.sort((a, b) => b.year - a.year)
         case FilterType.Name:
           return dataPhones.sort((a, b) => a.name.localeCompare(b.name));
-          case FilterType.Price:
-            return dataPhones.sort((a, b) => b.price - a.price)
+        case FilterType.Price:
+          return dataPhones.sort((a, b) => b.price - a.price)
         default:
           return item;
       }
     })
     return toFilter;
   }, [typeOfFilter, dataPhones]);
+
+  const filterHendler = (value: String) => {
+    switch (value) {
+      case 'name':
+        return setTypeOfFilter(FilterType.Name)
+      case 'age':
+        return setTypeOfFilter(FilterType.Age)
+      case 'price':
+        return setTypeOfFilter(FilterType.Price)
+      default:
+        break;
+    }
+  };
 
 
   useEffect(() => {
@@ -100,6 +113,7 @@ export const DataFilters: React.FC<Props> = ({ dataPhones, setFiltredPhones }) =
                 e.stopPropagation()
                 selectOption(option)
                 setIsOpen(false)
+                filterHendler(option.value)
               }}
             >
               {option.label}
