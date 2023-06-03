@@ -19,8 +19,19 @@
   }
 
   &__sortContainer {
+    position: relative;
     display: flex;
     gap: 16px;
     margin-bottom: 24px;
+
+    &::after {
+      position: absolute;
+      bottom: -24px;
+      left: 0;
+      right: 0;
+      content: "";
+      height: 1px;
+      background-color: #E2E6E9;
+    }
   }
 }
