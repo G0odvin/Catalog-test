@@ -25,7 +25,7 @@ export const Categorys: React.FC<Props> = ({ productsData }) => {
 
       <div className='grid'>
 
-        <div className='categorys__content grid__item grid__item--tablet-1-2 grid__item--desktop-1-4'>
+        <div className='categorys__content grid__item grid__item--tablet-1-2 grid__item--desktop-1-8'>
 
           <img src={CategorysImg1} alt="category image photo" className='categorys__content__img' />
 
@@ -33,7 +33,7 @@ export const Categorys: React.FC<Props> = ({ productsData }) => {
           <p className='categorys__content__description'>{`${countMobilePhones} models`}</p>
         </div>
 
-        <div className='categorys__content grid__item--tablet-3-4 grid__item--desktop-5-8'>
+        <div className='categorys__content grid__item--tablet-3-4 grid__item--desktop-9-16'>
 
           <img src={CategorysImg2} alt="category image photo" className='categorys__content__img categorys__content__img--tablets' />
 
@@ -41,7 +41,7 @@ export const Categorys: React.FC<Props> = ({ productsData }) => {
           <p className='categorys__content__description'>{`${countTablets} models`}</p>
         </div>
 
-        <div className='categorys__content grid__item--tablet-5-6 grid__item--desktop-9-12'>
+        <div className='categorys__content grid__item--tablet-5-6 grid__item--desktop-17-24'>
 
           <img src={CategorysImg3} alt="category image photo" className='categorys__content__img categorys__content__img--accessories' />
 

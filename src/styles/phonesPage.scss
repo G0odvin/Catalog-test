@@ -7,7 +7,7 @@
     line-height: 41px;
     letter-spacing: -0.01em;
     color: #313237;
-    margin-bottom: 24px;
+    margin-bottom: 8px;
   }
 
   &__description {
@@ -15,10 +15,12 @@
     font-size: 14px;
     line-height: 21px;
     color: #89939A;
+    margin-bottom: 40px;
   }
 
   &__sortContainer {
     display: flex;
     gap: 16px;
+    margin-bottom: 24px;
   }
 }

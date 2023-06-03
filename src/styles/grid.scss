@@ -25,7 +25,7 @@
     
   @include desktop {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: repeat(24, 1fr);
     column-gap: 16px;
   }
 
@@ -46,8 +46,8 @@
         }
       }
     }
-    @for $start from 1 through 12 {
-      @for $end from $start through 12 {
+    @for $start from 1 through 24 {
+      @for $end from $start through 24 {
         &--desktop-#{$start}-#{$end} {
           @include desktop {
             grid-column: #{$start} / #{$end + 1};

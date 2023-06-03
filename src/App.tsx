@@ -17,6 +17,8 @@ import { getData } from './api/data';
 import { ProductsSlider } from './components/ProductsSlider/ProductsSlider';
 import { HomePage } from './pages/HomePage';
 import { PhonesPage } from './pages/PhonesPage';
+import { ProductDetailsPage } from './pages/ProductDetailsPage';
+import { CartPage } from './pages/CartPage';
 
 const App = () => {
   // const slides = [
@@ -99,7 +101,10 @@ const App = () => {
           productsData={newModels} /> */}
 
           {/* <HomePage /> */}
-          <PhonesPage />
+          {/* <PhonesPage /> */}
+
+          {/* <ProductDetailsPage /> */}
+          <CartPage />
       </div>
 
       <Footer />

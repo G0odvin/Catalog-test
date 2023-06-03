@@ -1,6 +1,7 @@
 import React from 'react'
 import { ProductCard } from '../ProductCard/ProductCard';
 import { Phones } from '../../types/Phones';
+import '../../styles/productList.scss';
 
 type Props = {
   dataPhones: Phones[]
@@ -8,7 +9,7 @@ type Props = {
 
 const ProductList: React.FC<Props> = ({ dataPhones }) => {
   return (
-    <div>
+    <div className='productList'>
       {dataPhones.map(phone => (
         <ProductCard
           key={phone.id}

@@ -5,6 +5,7 @@ import { Phones } from '../types/Phones';
 import { DataFilters } from '../components/DataFilters/DataFilters';
 import { ItemsOnPage } from '../components/ItemsOnPage/ItemsOnPage';
 import { Pagination } from '../components/Pagination/Pagination';
+import ProductList from '../components/ProductList/ProductList';
 
 export const PhonesPage = () => {
   const [isPhonesDataLoading, setIsPhonesDataLoading] = useState(false);
@@ -50,23 +51,27 @@ export const PhonesPage = () => {
       <h1 className='phonesPage__title'>Mobile phones</h1>
       <p className='phonesPage__description'>{`${countMobilePhones} models`}</p>
       <div className='phonesPage__sortContainer'>
-      <DataFilters
-        dataPhones={dataPhones}
-        setFiltredPhones = {setFiltredPhones}
-      />
-      <ItemsOnPage 
-      setItemsPerPage={handleChangeItemsPerPage}
-      />
+        <DataFilters
+          dataPhones={dataPhones}
+          setFiltredPhones={setFiltredPhones}
+        />
+        <ItemsOnPage
+          setItemsPerPage={handleChangeItemsPerPage}
+        />
       </div>
 
-      <Pagination 
+      <ProductList
+        dataPhones={filtredPhones}
+      />
+
+      {/* <Pagination 
       itemsPerPage={itemsPerPage}
       currentPage={currentPage}
       dataPhones={dataPhones}
       total={countMobilePhones}
       onPageChange={onPageChange}
       setCurrentPage={setCurrentPage}
-      />
+      /> */}
 
     </>
   )

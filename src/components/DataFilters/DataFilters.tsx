@@ -46,7 +46,7 @@ export const DataFilters: React.FC<Props> = ({ dataPhones, setFiltredPhones }) =
         case FilterType.Name:
           return dataPhones.sort((a, b) => a.name.localeCompare(b.name));
         case FilterType.Price:
-          return dataPhones.sort((a, b) => b.price - a.price)
+          return dataPhones.sort((a, b) => b.fullPrice - a.fullPrice)
         default:
           return item;
       }
@@ -62,6 +62,8 @@ export const DataFilters: React.FC<Props> = ({ dataPhones, setFiltredPhones }) =
         return setTypeOfFilter(FilterType.Age)
       case 'price':
         return setTypeOfFilter(FilterType.Price)
+        case 'all':
+          return setTypeOfFilter(FilterType.All)
       default:
         break;
     }
