@@ -19,6 +19,8 @@ import { HomePage } from './pages/HomePage';
 import { PhonesPage } from './pages/PhonesPage';
 import { ProductDetailsPage } from './pages/ProductDetailsPage';
 import { CartPage } from './pages/CartPage';
+import { NotFoundPage } from './pages/NotFoundPage';
+import { Route, Routes } from 'react-router-dom';
 
 const App = () => {
   // const slides = [
@@ -100,11 +102,17 @@ const App = () => {
           title={'Brand new models'}
           productsData={newModels} /> */}
 
-          <HomePage />
           {/* <PhonesPage /> */}
 
           {/* <ProductDetailsPage /> */}
           {/* <CartPage /> */}
+
+          <Routes>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/cart' element={<CartPage />}/>
+            <Route path='*' element={<NotFoundPage />}/>
+          </Routes>
+
       </div>
 
       <Footer />

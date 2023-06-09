@@ -4,13 +4,13 @@ import './styles/index.scss';
 import './fonts/Mont-Black.ttf';
 
 import App from './App';
-import { store } from './app/store';
+// import { store } from './app/store';
 import { HashRouter } from 'react-router-dom';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <HashRouter>
-    <Provider store={store}>
+    {/* <Provider store={store}> */}
       <App />
-    </Provider>
+    {/* </Provider> */}
   </HashRouter>,
 );
