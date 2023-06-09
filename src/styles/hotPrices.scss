@@ -1,0 +1,32 @@
+.hotPrices {
+  box-sizing: border-box;
+  font-family: Mont, sans-serif;
+
+  margin-bottom: 80px;
+
+  &__titleContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 41px;
+    letter-spacing: -0.01em;
+    color: #313237;
+  }
+
+  &__btnContainer {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__cardContainer {
+    display: flex;
+    // justify-content: space-between;
+    overflow: hidden;
+  }
+}
+
