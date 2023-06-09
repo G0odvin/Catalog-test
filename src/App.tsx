@@ -100,11 +100,11 @@ const App = () => {
           title={'Brand new models'}
           productsData={newModels} /> */}
 
-          {/* <HomePage /> */}
+          <HomePage />
           {/* <PhonesPage /> */}
 
           {/* <ProductDetailsPage /> */}
-          <CartPage />
+          {/* <CartPage /> */}
       </div>
 
       <Footer />

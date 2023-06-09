@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import '../../styles/carousel.scss';
+import '../../styles/index.scss';
+import '../../styles/utils/mixins.scss'
 import arrowLeft from '../../images/icons/arrow_left.svg';
 import arrowRight from '../../images/icons/arrow_right.svg';
 import { useWindowSize } from '../../hooks/useWindowSize';
