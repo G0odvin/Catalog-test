@@ -1,9 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { Phones } from '../../types/Phones';
 import '../../styles/dataFilters.scss';
 import ArrowDown from '../../images/icons/arrow_down.svg';
 import classNames from 'classnames';
 import { FilterType } from '../../types/FilterType';
+import { SearchContext } from '../../App';
 
 type Props = {
   dataPhones: Phones[],
@@ -28,6 +29,8 @@ export const DataFilters: React.FC<Props> = ({ dataPhones, setFiltredPhones }) =
   const [highlightedIndex, setHighlightedIndex] = useState(0);
   const [typeOfFilter, setTypeOfFilter] = useState(FilterType.All);
 
+  const searchContext = useContext(SearchContext);
+
   const selectOption = (option: SelectOption) => {
     if (option !== value) {
       setValue(option)
@@ -37,16 +40,21 @@ export const DataFilters: React.FC<Props> = ({ dataPhones, setFiltredPhones }) =
   const isOptionSelected = (option: SelectOption) => {
     return option === value
   };
+  
+  const queryToLowerCase = searchContext?.searchValue.toLocaleLowerCase();
 
   const getFiltredPhones = useMemo(() => {
     const toFilter = dataPhones.filter(item => {
+
+      const filterInput = item.name.toLowerCase().includes(queryToLowerCase);
+
       switch (typeOfFilter) {
         case FilterType.Age:
-          return dataPhones.sort((a, b) => b.year - a.year)
+          return dataPhones.sort((a, b) => b.year - a.year) && filterInput;
         case FilterType.Name:
-          return dataPhones.sort((a, b) => a.name.localeCompare(b.name));
+          return dataPhones.sort((a, b) => a.name.localeCompare(b.name)) && filterInput;
         case FilterType.Price:
-          return dataPhones.sort((a, b) => b.fullPrice - a.fullPrice)
+          return dataPhones.sort((a, b) => b.fullPrice - a.fullPrice) && filterInput;
         default:
           return item;
       }

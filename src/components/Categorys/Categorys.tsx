@@ -5,6 +5,7 @@ import CategorysImg1 from '../../images/category/image 1.png';
 import CategorysImg2 from '../../images/category/image 2.png';
 import CategorysImg3 from '../../images/category/image 3.png';
 import { Phones } from '../../types/Phones';
+import { Link } from 'react-router-dom';
 
 type Props = {
   productsData: Phones[],
@@ -26,8 +27,10 @@ export const Categorys: React.FC<Props> = ({ productsData }) => {
       <div className='grid'>
 
         <div className='categorys__content grid__item grid__item--tablet-1-2 grid__item--desktop-1-8'>
-
+          <Link to='/phones'>
           <img src={CategorysImg1} alt="category image photo" className='categorys__content__img' />
+          </Link>
+
 
           <h2 className='categorys__content__title'>Mobile phones</h2>
           <p className='categorys__content__description'>{`${countMobilePhones} models`}</p>

@@ -11,15 +11,17 @@
   &__icons {
     display: flex;
     justify-content: flex-end;
+    height: 64px;
   }
 
   &__iconsBlock {
     display: flex;
     box-sizing: border-box;
+    align-items: center;
     padding: 0 24px;
     border-left: 1px solid #E2E6E9;
     border-right: 1px solid #E2E6E9;
-    height: 64px;
+
   }
 
   &__iconsFavorites {
@@ -38,7 +40,6 @@
     display: block;
     height: 16px;
     width: 14px;
-    margin: auto;
   }
 
   &__iconsCardImage {

@@ -6,6 +6,7 @@ import { DataFilters } from '../components/DataFilters/DataFilters';
 import { ItemsOnPage } from '../components/ItemsOnPage/ItemsOnPage';
 import { Pagination } from '../components/Pagination/Pagination';
 import ProductList from '../components/ProductList/ProductList';
+import { useLocation } from 'react-router-dom';
 
 export const PhonesPage = () => {
   const [isPhonesDataLoading, setIsPhonesDataLoading] = useState(false);

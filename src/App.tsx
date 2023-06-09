@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import './App.scss';
 import { Carousel } from './components/Carousel/Carousel';
 import { Categorys } from './components/Categorys/Categorys';
@@ -22,69 +22,24 @@ import { CartPage } from './pages/CartPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { Route, Routes } from 'react-router-dom';
 
+
+type SerchContextType = {
+  searchValue: string;
+  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const SearchContext = createContext<SerchContextType>({} as SerchContextType);
+
 const App = () => {
-  // const slides = [
-  //   sliderImg1,
-  //   sliderImg2,
-  //   sliderImg3,
-  //   sliderImg4
-  // ];
-  // const [productsData, setProductsData] = useState<Phones[]>([]);
-  // const [hotPriceProducts, setHotPriceProducts] = useState<Phones[]>([]);
-  // const [newModels, setNewModels] = useState<Phones[]>([]);
-  // const [isPhonesDataLoading, setIsPhonesDataLoading] = useState(false);
 
-  // const loadProductsData = async () => {
-  //   try {
-  //     setIsPhonesDataLoading(true);
-  //     const getPhonesData = await getPhones();
-  //     setProductsData(getPhonesData);
-  //   } catch (error) {
-  //     'Error'
-  //     setIsPhonesDataLoading(false);
-  //   } finally {
-  //     setIsPhonesDataLoading(false);
-  //   }
-  // };
+  const [searchValue, setSearchValue] = useState('');
 
-  // useEffect(() => {
-  //   loadProductsData();
-  //   getHotPriceProducts();
-  //   getBrandNewProducts();
-  // }, []);
-
-
-  // const getHotPriceProducts = async () => {
-  //   try {
-  //     setIsPhonesDataLoading(true);
-  //     const dataHotPrice = await getPhones();
-  //     // const hotPriceProducts = dataHotPrice.filter(product => product.discount > 0);
-  //     setHotPriceProducts(dataHotPrice);
-  //   } catch (error) {
-  //     'Error'
-  //     setIsPhonesDataLoading(false);
-  //   } finally {
-  //     setIsPhonesDataLoading(false);
-  //   }
-  // };
-
-  // const getBrandNewProducts = async () => {
-  //   try {
-  //     setIsPhonesDataLoading(true);
-  //     const dataProducts = await getPhones();
-  //     const dataNewModels = dataProducts.filter(product => product.year === 2019);
-  //     const dataNewModelsSorted = [...dataNewModels].sort((a, b) => b.price - a.price);
-  //     setNewModels(dataNewModelsSorted);
-  //   } catch (error) {
-  //     'Error'
-  //     setIsPhonesDataLoading(false);
-  //   } finally {
-  //     setIsPhonesDataLoading(false);
-  //   }
-  // }
 
   return (
     <div className="App">
+      <SearchContext.Provider value={{ searchValue, setSearchValue }}>
+
+
       <Header />
       <div className='container'>
         {/* <Carousel slides={slides} />
@@ -108,14 +63,16 @@ const App = () => {
           {/* <CartPage /> */}
 
           <Routes>
-            <Route path='/' element={<HomePage />} />
+            <Route path='/home' element={<HomePage />} />
             <Route path='/cart' element={<CartPage />}/>
+            <Route path='/phones' element={<PhonesPage />}/>
             <Route path='*' element={<NotFoundPage />}/>
           </Routes>
 
       </div>
 
       <Footer />
+      </SearchContext.Provider>
     </div>
   );
 };
